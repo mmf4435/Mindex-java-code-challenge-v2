@@ -7,6 +7,7 @@ import de.bwaldvogel.mongo.MongoServer;
 import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDbFactory;
@@ -15,14 +16,26 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackageClasses = EmployeeRepository.class)
 @Configuration
 public class MongoConfig{
+    @Primary
     @Bean
     public MongoTemplate mongoTemplate(MongoClient mongoClient) {
         return new MongoTemplate(mongoDbFactory(mongoClient));
     }
 
+    @Bean(name = "compTemplate")
+    public MongoTemplate compTemplate(MongoClient mongoClient){
+        return new MongoTemplate(compMongoDbFactory(mongoClient));
+    }
+
+    @Primary
     @Bean
     public MongoDbFactory mongoDbFactory(MongoClient mongoClient) {
         return new SimpleMongoClientDbFactory(mongoClient, "test");
+    }
+
+    @Bean
+    public MongoDbFactory compMongoDbFactory(MongoClient mongoClient){
+        return new SimpleMongoClientDbFactory(mongoClient, "test2");
     }
 
     @Bean(destroyMethod="shutdown")
