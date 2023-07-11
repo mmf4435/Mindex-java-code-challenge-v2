@@ -7,6 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * CompensationController.java
+ * A controller for creating and reading compensation objects
+ * @author Matt Favazza
+ * @version 7/11/2023
+ */
 @RestController
 public class CompensationController {
     //Fields
@@ -25,7 +31,7 @@ public class CompensationController {
     }
 
     //REST mapping for creating a new compensation from a specified employee id
-    @PutMapping("/compensation/{id}")
+    @PutMapping("/compensation")
     public Compensation create(@RequestBody Compensation compensation){
         LOG.debug("Received compensation create request for [{}]", compensation);
 

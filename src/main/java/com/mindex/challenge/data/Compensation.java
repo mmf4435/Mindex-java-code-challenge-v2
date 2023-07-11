@@ -3,6 +3,12 @@ package com.mindex.challenge.data;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Compensation.java
+ * A type representing a compensation for an employee
+ * @author Matt Favazza
+ * @version 7/11/2023
+ */
 public class Compensation {
 
     //Fields
@@ -19,6 +25,7 @@ public class Compensation {
 
     //methods
 
+    //accessor and mutators for fields
     public String getEmployeeId(){
         return employeeId;
     }

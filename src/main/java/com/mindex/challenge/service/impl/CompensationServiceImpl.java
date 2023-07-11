@@ -10,6 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * CompensationServiceImpl.java
+ * implements the creation and reading of compensation objects to and from the compensation repository
+ * @author Matt Favazza
+ * @version 7/11/2023
+ */
 @Service
 public class CompensationServiceImpl implements CompensationService {
 
