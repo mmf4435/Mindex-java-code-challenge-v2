@@ -31,7 +31,7 @@ public class CompensationController {
     }
 
     //REST mapping for creating a new compensation from a specified employee id
-    @PutMapping("/compensation")
+    @PostMapping("/compensation")
     public Compensation create(@RequestBody Compensation compensation){
         LOG.debug("Received compensation create request for [{}]", compensation);
 
