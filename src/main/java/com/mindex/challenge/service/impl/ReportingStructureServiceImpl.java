@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReportingStructureServiceImpl implements ReportingStructureService {
 
@@ -27,6 +29,23 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
             throw new RuntimeException("Invalid employeeId: " + id);
         }
 
-        return new ReportingStructure(employee);
+        Employee fullEmployeeStruct = fillOutReporting(employee);
+        ReportingStructure reportingStructure = new ReportingStructure(fullEmployeeStruct);
+        reportingStructure.setEmployee(employee);
+
+        return reportingStructure;
+    }
+
+    private Employee fillOutReporting(Employee emp){
+        emp = employeeRepository.findByEmployeeId(emp.getEmployeeId());
+        List<Employee> directs = emp.getDirectReports();
+        if (directs != null && directs.size() != 0) {
+            for (int i = 0; i < directs.size(); i++) {
+                Employee direct = fillOutReporting(directs.get(i));
+                directs.set(i, direct);
+            }
+            emp.setDirectReports(directs);
+        }
+        return emp;
     }
 }

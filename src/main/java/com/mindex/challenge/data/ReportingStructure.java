@@ -3,7 +3,7 @@ package com.mindex.challenge.data;
 public class ReportingStructure {
 
     //Fields
-    private final Employee employee;
+    private Employee employee;
 
     private int numberOfReports;
 
@@ -18,6 +18,10 @@ public class ReportingStructure {
         return employee;
     }
 
+    public void setEmployee(Employee employee){
+        this.employee = employee;
+    }
+
     public int getNumberOfReports(){
         return numberOfReports;
     }
@@ -27,7 +31,7 @@ public class ReportingStructure {
     }
 
     private int calcNumberOfReports(Employee emp){
-        if(emp.getDirectReports().size() == 0){
+        if(emp.getDirectReports() == null || emp.getDirectReports().size() == 0){
             return 0;
         }
         else{
