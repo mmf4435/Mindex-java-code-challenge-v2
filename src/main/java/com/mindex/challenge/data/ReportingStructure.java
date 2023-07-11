@@ -1,5 +1,11 @@
 package com.mindex.challenge.data;
 
+/**
+ * ReportingStructure.java
+ * A type representing an employee and the total number of reports that they have.
+ * @author Matt Favazza
+ * @version 7/11/2023
+ */
 public class ReportingStructure {
 
     //Fields
@@ -14,6 +20,8 @@ public class ReportingStructure {
     }
 
     //Methods
+
+    // accessor and mutators
     public Employee getEmployee(){
         return employee;
     }
@@ -30,6 +38,12 @@ public class ReportingStructure {
         this.numberOfReports = numberOfReports;
     }
 
+    //Other methods
+    /**
+     * Calculates the number of reports that the employee has recursively
+     * @param emp - the employee object to count reports from
+     * @return the total number of reports including direct and indirect reports
+     */
     private int calcNumberOfReports(Employee emp){
         if(emp.getDirectReports() == null || emp.getDirectReports().size() == 0){
             return 0;
